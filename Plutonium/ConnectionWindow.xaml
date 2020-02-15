@@ -1,0 +1,76 @@
+﻿<Window x:Class="Plutonium.ConnectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Plutonium" Height="600" Width="800"
+        Closing="Window_Closing" MinWidth="320" MinHeight="240" WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*" />
+            <ColumnDefinition Width="0.3*" />
+            <ColumnDefinition Width="0.3*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Логи" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center"
+                   VerticalAlignment="Center" Margin="0,10,0,5" FontSize="18" />
+        <RichTextBox Name="Logs" Grid.Row="1" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="3" IsReadOnly="True" IsReadOnlyCaretVisible="True">
+            <FlowDocument>
+                <FlowDocument.Resources>
+                    <Style TargetType="{x:Type Paragraph}">
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="Padding" Value="0" />
+                    </Style>
+                </FlowDocument.Resources>
+            </FlowDocument>
+        </RichTextBox>
+        <Button Click="ClearLogs_Click" Content="Очистить" Grid.Row="6"
+                Grid.Column="0" />
+
+        <CheckBox Name="LogToClient" Content="=> КЛИЕНТ" Grid.Row="6"
+                  Grid.Column="1"
+                  IsChecked="True" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <CheckBox Name="LogToServer" Content="=> СЕРВЕР" Grid.Row="6"
+                  Grid.Column="2"
+                  IsChecked="True" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <CheckBox Name="AlwaysOnTop" Content="Поверх всех окон" Checked="AlwaysOnTop_OnChecked"
+                  Unchecked="AlwaysOnTop_OnChecked" Grid.Row="6" Grid.Column="3" IsChecked="False"
+                  HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+        <TextBlock Text="Сервер => Клиент" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center"
+                   VerticalAlignment="Center" Margin="0,10,0,5" FontSize="18" />
+        <TextBox Name="ToClient" Grid.Row="1" Grid.Column="3"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 AcceptsTab="True"
+                 HorizontalScrollBarVisibility="Disabled"
+                 VerticalScrollBarVisibility="Auto" />
+        <Button Name="SendToClientBtn" Click="SendToClient_Click" Content="Отправить на Клиент"
+                Grid.Row="2"
+                Grid.Column="3" FontSize="16" />
+
+        <TextBlock Text="Клиент => Сервер" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center"
+                   VerticalAlignment="Center" Margin="0,10,0,5" FontSize="18" />
+        <TextBox Name="ToServer" Grid.Row="4" Grid.Column="3"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 AcceptsTab="True"
+                 HorizontalScrollBarVisibility="Disabled"
+                 VerticalScrollBarVisibility="Auto" />
+        <Button Name="SendToServerBtn" Click="SendToServer_Click" Content="Отправить на Сервер"
+                Grid.Row="5"
+                Grid.Column="3" FontSize="16" />
+    </Grid>
+</Window>
